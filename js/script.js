@@ -106,3 +106,27 @@ formNumbers.addEventListener('submit', function (e) {
     e.preventDefault();
 })
 
+// Al click sul tasto "Conferma"
+confirmButton.addEventListener('click', function () {
+
+    // Leggo il valore inserito dall'utente
+    const num1Value = parseInt(num1.value);
+    const num2Value = parseInt(num2.value);
+    const num3Value = parseInt(num3.value);
+    const num4Value = parseInt(num4.value);
+    const num5Value = parseInt(num5.value);
+
+    // Inserisco i valori dell'utente nell'array 
+    if (userArrayNumber.length < numbers) {
+        userArrayNumber.push(num1Value, num2Value, num3Value, num4Value, num5Value);
+    };
+
+    console.log(userArrayNumber);
+
+    //! Validazione dei valori inseriti
+    if (userArrayNumber.includes(NaN)) {
+        message = 'Dati mancanti, riprova!';
+        alert(message);
+    }
+
+})
