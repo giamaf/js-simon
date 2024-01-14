@@ -99,4 +99,10 @@ for (let i = 0; i < numbers; i++) {
     }, 2000);
 }
 
+// --------------------------------------------------
+formNumbers.addEventListener('submit', function (e) {
+
+    //! Blocco il comportamento di default
+    e.preventDefault();
+})
 
