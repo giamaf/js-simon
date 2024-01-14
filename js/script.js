@@ -87,4 +87,16 @@ for (let i = 0; i < numbers; i++) {
     // Stampo in pagina l'elemento
     numberList.appendChild(numberElement);
 
+    // Imposto un countdown in pagina per la visualizzazione dei numeri
+    setTimeout(function () {
+
+        // Rimuovo i numeri dal DOM
+        groupNumbersSection.remove();
+
+        // Inserisco il form per l'inserimento dei numeri
+        formNumbers.classList.remove('d-none');
+
+    }, 2000);
 }
+
+
