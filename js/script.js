@@ -46,4 +46,21 @@ const userArrayNumber = [];
 // Risultato da stampare in pagina
 let message = 'Complimenti hai indovinato tutti i numeri!';
 
+//! --------------------------------------------------------------------------------------------
+//! FUNZIONI
+//! --------------------------------------------------------------------------------------------
 
+// Funzione per creare 1 array con 5 diversi numeri casuali
+const getArrayRandomNumber = (min, max) => {
+    const arrayRandomNumbers = [];
+    while (arrayRandomNumbers.length < numbers) {
+        const randomNumber = Math.floor(Math.random() * max) + min;
+        if (!arrayRandomNumbers.includes(randomNumber)) {
+            arrayRandomNumbers.push(randomNumber);
+        }
+    }
+    return arrayRandomNumbers;
+}
+
+const arrayNumbers = getArrayRandomNumber(1, 10);
+console.log('Numeri da stampare: ', arrayNumbers);
