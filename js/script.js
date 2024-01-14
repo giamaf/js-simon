@@ -64,3 +64,27 @@ const getArrayRandomNumber = (min, max) => {
 
 const arrayNumbers = getArrayRandomNumber(1, 10);
 console.log('Numeri da stampare: ', arrayNumbers);
+
+//? --------------------------------------------------------------------------------------------
+//? SVOLGIMENTO
+//? --------------------------------------------------------------------------------------------
+
+//! Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi.
+
+// Estraggo un numero dall'array e lo stampo
+for (let i = 0; i < numbers; i++) {
+
+    // Prendo il primo numero dell'array da stampare
+    const numberToPrint = arrayNumbers.shift(i);
+    console.log('Numero da stampare: ', numberToPrint)
+
+    // Creo l'elemento per il DOM
+    const numberElement = document.createElement('li');
+
+    // Inserisco i numeri nell'elemento
+    numberElement.innerText = numberToPrint;
+
+    // Stampo in pagina l'elemento
+    numberList.appendChild(numberElement);
+
+}
