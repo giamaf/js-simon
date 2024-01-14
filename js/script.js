@@ -33,4 +33,17 @@ const num4 = document.getElementById('num4');
 const num5 = document.getElementById('num5');
 const confirmButton = document.getElementById('confirm-button');
 
+//? --------------------------------------------------------------------------------------------
+//? VARIABILI
+//? --------------------------------------------------------------------------------------------
+
+// Quantità di numeri da randomizzare
+const numbers = 5;
+
+// Array di numeri inseriti dall'utente
+const userArrayNumber = [];
+
+// Risultato da stampare in pagina
+let message = 'Complimenti hai indovinato tutti i numeri!';
+
 
