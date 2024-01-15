@@ -22,16 +22,13 @@ console.log('JS OK');
 //? --------------------------------------------------------------------------------------------
 
 // Recupero gli elementi dal DOM
+const countdownElement = document.getElementById('countdown');
 const groupNumbersSection = document.querySelector('.group-numbers');
 const title = document.getElementById('title');
 const numberList = document.querySelector('.number-list');
 const formNumbers = document.querySelector('.numbers-form');
-const num1 = document.getElementById('num1');
-const num2 = document.getElementById('num2');
-const num3 = document.getElementById('num3');
-const num4 = document.getElementById('num4');
-const num5 = document.getElementById('num5');
-const confirmButton = document.getElementById('confirm-button');
+const inputs = document.querySelectorAll('input');
+const message = document.getElementById('message');
 
 //? --------------------------------------------------------------------------------------------
 //? VARIABILI
@@ -40,11 +37,12 @@ const confirmButton = document.getElementById('confirm-button');
 // Quantità di numeri da randomizzare
 const numbers = 5;
 
-// Array di numeri inseriti dall'utente
-const userArrayNumber = [];
+// Variabile tempo
+let count = 5;
+countdownElement.innerText = count;
 
-// Risultato da stampare in pagina
-let message = 'Complimenti hai indovinato tutti i numeri!';
+// Array di numeri inseriti dall'utente
+const userArrayNumbers = [];
 
 //! --------------------------------------------------------------------------------------------
 //! FUNZIONI
@@ -70,12 +68,31 @@ console.log('Numeri da stampare: ', arrayNumbers);
 //? --------------------------------------------------------------------------------------------
 
 //! Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi.
+// Imposto un countdown in pagina per la visualizzazione dei numeri
+const countdown = setInterval(function () {
+
+    // Stampo il countdown nel DOM
+    countdownElement.innerText = --count;
+
+    // Fermo il countdown
+    if (count === 0) {
+        clearInterval(countdown);
+
+        // Rimuovo i numeri dal DOM
+        groupNumbersSection.remove();
+
+        // Inserisco il form per l'inserimento dei numeri
+        formNumbers.classList.remove('d-none');
+    }
+
+}, 1000);
+
 
 // Estraggo un numero dall'array e lo stampo
 for (let i = 0; i < numbers; i++) {
 
     // Prendo il primo numero dell'array da stampare
-    const numberToPrint = arrayNumbers.shift(i);
+    const numberToPrint = arrayNumbers[i];
     console.log('Numero da stampare: ', numberToPrint)
 
     // Creo l'elemento per il DOM
@@ -87,46 +104,42 @@ for (let i = 0; i < numbers; i++) {
     // Stampo in pagina l'elemento
     numberList.appendChild(numberElement);
 
-    // Imposto un countdown in pagina per la visualizzazione dei numeri
-    setTimeout(function () {
-
-        // Rimuovo i numeri dal DOM
-        groupNumbersSection.remove();
-
-        // Inserisco il form per l'inserimento dei numeri
-        formNumbers.classList.remove('d-none');
-
-    }, 2000);
 }
 
-// --------------------------------------------------
+// Al click sul tasto "Conferma"
 formNumbers.addEventListener('submit', function (e) {
 
     //! Blocco il comportamento di default
     e.preventDefault();
-})
-
-// Al click sul tasto "Conferma"
-confirmButton.addEventListener('click', function () {
 
     // Leggo il valore inserito dall'utente
-    const num1Value = parseInt(num1.value);
-    const num2Value = parseInt(num2.value);
-    const num3Value = parseInt(num3.value);
-    const num4Value = parseInt(num4.value);
-    const num5Value = parseInt(num5.value);
+    for (let i = 0; i < inputs.length; i++) {
+        const value = parseInt(inputs[i].value);
 
-    // Inserisco i valori dell'utente nell'array 
-    if (userArrayNumber.length < numbers) {
-        userArrayNumber.push(num1Value, num2Value, num3Value, num4Value, num5Value);
-    };
-
-    console.log(userArrayNumber);
-
-    //! Validazione dei valori inseriti
-    if (userArrayNumber.includes(NaN)) {
-        message = 'Dati mancanti, riprova!';
-        alert(message);
+        if (!isNaN(value) && value >= 1 && value <= 100 && !userArrayNumbers.includes(value)) {
+            userArrayNumbers.push(value);
+        }
     }
 
+    //! Validazione per dati errati o ripetuti
+    if (userArrayNumbers.length !== numbers) {
+        message.innerText = 'Dati non validi!';
+    }
+
+    //! Validazione per dati parzialmente corretti
+    const correctNumbers = [];
+
+    for (let i = 0; i < userArrayNumbers.length; i++) {
+        if (arrayNumbers.includes(userArrayNumbers[i])) {
+            correctNumbers.push(userArrayNumbers[i]);
+        }
+    }
+
+    if (correctNumbers.length === numbers) {
+        message.innerText = `Hai indovinato ${correctNumbers.length} numeri! ${correctNumbers}`;
+    };
+
+    console.log('Array Originale: ', arrayNumbers);
+    console.log('Utente: ', userArrayNumbers);
+    console.log('Corrette: ', correctNumbers);
 })
