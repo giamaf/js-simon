@@ -29,6 +29,7 @@
 
 <body>
     <section class="group-numbers">
+        <h1 id="countdown" class="text-center"></h1>
         <h1 id="title">Memorizza i seguenti numeri</h1>
         <ul class="number-list"></ul>
     </section>
@@ -36,26 +37,27 @@
     <section class="form-section">
         <form action="" class="numbers-form d-none">
             <div class="mb-3">
-                <label for="num1" class="form-label">1° numero</label>
-                <input type="number" class="form-control" id="num1" placeholder="Inserisci un numero" min="1" max="100">
+                <label for="num1" class="form-label"><strong>1° numero</strong></label>
+                <input type="number" class="form-control" placeholder="Inserisci un numero" min="1" max="100" required>
             </div>
             <div class="mb-3">
-                <label for="num2" class="form-label">2° numero</label>
-                <input type="number" class="form-control" id="num2" placeholder="Inserisci un numero" min="1" max="100">
+                <label for="num2" class="form-label"><strong>2° numero</strong></label>
+                <input type="number" class="form-control" placeholder="Inserisci un numero" min="1" max="100" required>
             </div>
             <div class="mb-3">
-                <label for="num3" class="form-label">3° numero</label>
-                <input type="number" class="form-control" id="num3" placeholder="Inserisci un numero" min="1" max="100">
+                <label for="num3" class="form-label"><strong>3° numero</strong></label>
+                <input type="number" class="form-control" placeholder="Inserisci un numero" min="1" max="100" required>
             </div>
             <div class="mb-3">
-                <label for="num4" class="form-label">4° numero</label>
-                <input type="number" class="form-control" id="num4" placeholder="Inserisci un numero" min="1" max="100">
+                <label for="num4" class="form-label"><strong>4° numero</strong></label>
+                <input type="number" class="form-control" placeholder="Inserisci un numero" min="1" max="100" required>
             </div>
             <div class="mb-3">
-                <label for="num5" class="form-label">5° numero</label>
-                <input type="number" class="form-control" id="num5" placeholder="Inserisci un numero" min="1" max="100">
+                <label for="num5" class="form-label"><strong>5° numero</strong></label>
+                <input type="number" class="form-control" placeholder="Inserisci un numero" min="1" max="100" required>
             </div>
-            <button class="btn btn-secondary" id="confirm-button">Conferma</button>
+            <button class="btn btn-secondary my-2" id="confirm-button">Conferma</button>
+            <p id="message"></p>
         </form>
     </section>
 </body>
